@@ -1,0 +1,230 @@
+/* Mindless Mini Games — legal site
+   Colours lifted straight from the app's Chrome palette (DesignSystem.swift). */
+
+:root {
+  --ground:       #0E1014;
+  --surface:      #171A21;
+  --raised:       #1F232C;
+  --stroke:       #2A2F3A;
+  --text:         #F2F4F8;
+  --text-2:       #98A2B3;
+  --text-3:       #5D6675;
+  --accent:       #FF6B4A;
+  --tiles:        #6FD3FF;
+  --sparks:       #FFC53D;
+  --success:      #4ADE80;
+  --r-chip:  8px;
+  --r-row:  14px;
+  --r-tile: 20px;
+  --r-sheet:28px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background-color: var(--ground);
+  /* the halftone dot field, same idea as the app's menu backdrop */
+  background-image:
+    radial-gradient(circle at 18% -10%, rgba(255,107,74,0.16), transparent 45%),
+    radial-gradient(circle at 88% 8%,  rgba(111,211,255,0.10), transparent 40%),
+    radial-gradient(rgba(255,255,255,0.045) 1px, transparent 1px);
+  background-size: auto, auto, 22px 22px;
+  background-attachment: fixed;
+  color: var(--text);
+  font-family: 'Figtree', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* ---- masthead ---- */
+
+.mast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 28px;
+}
+
+.mark {
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--accent);
+  position: relative;
+  padding-right: 10px;
+}
+
+.mark::after {                 /* the little spark at the M's shoulder */
+  content: "";
+  position: absolute;
+  top: 2px; right: 0;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--sparks);
+  box-shadow: 0 0 12px rgba(255,197,61,0.7);
+}
+
+.mast .name {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-2);
+}
+
+/* ---- type ---- */
+
+h1 {
+  font-size: 40px;
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+}
+
+.lede {
+  font-size: 19px;
+  color: var(--text-2);
+  margin: 0 0 8px;
+}
+
+.stamp {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  margin: 0 0 34px;
+}
+
+h2 {
+  font-size: 23px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 40px 0 12px;
+  padding-top: 4px;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin: 26px 0 8px;
+  color: var(--tiles);
+}
+
+p, li { color: var(--text-2); }
+p { margin: 0 0 14px; }
+strong { color: var(--text); font-weight: 700; }
+
+ul { padding-left: 22px; margin: 0 0 16px; }
+li { margin-bottom: 8px; }
+li::marker { color: var(--accent); }
+
+a { color: var(--tiles); text-decoration: none; border-bottom: 1px solid rgba(111,211,255,0.35); }
+a:hover { border-bottom-color: var(--tiles); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--stroke);
+  margin: 44px 0;
+}
+
+/* ---- cards ---- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r-sheet);
+  padding: 24px 26px;
+  margin: 0 0 18px;
+}
+
+.card h3 { margin-top: 0; }
+.card p:last-child, .card ul:last-child { margin-bottom: 0; }
+
+.note {
+  border-left: 3px solid var(--sparks);
+  background: rgba(255,197,61,0.07);
+  border-radius: var(--r-row);
+  padding: 16px 20px;
+  margin: 0 0 22px;
+  font-size: 15.5px;
+}
+.note strong { color: var(--sparks); }
+
+/* ---- the "what we collect" quick table ---- */
+
+.facts { margin: 6px 0 20px; }
+
+.fact {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--stroke);
+}
+.fact:last-child { border-bottom: 0; }
+
+.dot {
+  flex: 0 0 auto;
+  width: 10px; height: 10px;
+  border-radius: 3px;
+  margin-top: 8px;
+}
+.dot.no  { background: var(--success); }
+.dot.yes { background: var(--accent); }
+
+.fact .k { color: var(--text); font-weight: 700; display: block; }
+.fact .v { color: var(--text-2); font-size: 15.5px; }
+
+/* ---- nav tiles on the index ---- */
+
+.tiles { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; margin: 26px 0 0; }
+@media (max-width: 560px) { .tiles { grid-template-columns: 1fr; } }
+
+.tile {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius: var(--r-tile);
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--stroke);
+  transition: transform .18s ease, border-color .18s ease, background .18s ease;
+}
+.tile:hover { transform: translateY(-2px); border-color: var(--accent); background: var(--raised); }
+.tile .t { font-size: 20px; font-weight: 800; color: var(--text); display: block; margin-bottom: 4px; }
+.tile .d { font-size: 15px; color: var(--text-3); }
+
+/* ---- footer ---- */
+
+footer {
+  margin-top: 56px;
+  padding-top: 22px;
+  border-top: 1px solid var(--stroke);
+  font-size: 14px;
+  color: var(--text-3);
+}
+footer a { color: var(--text-2); border-bottom-color: rgba(152,162,179,0.3); }
+
+.backlink {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 0;
+  margin-bottom: 22px;
+}
+.backlink:hover { color: var(--accent); border: 0; }
